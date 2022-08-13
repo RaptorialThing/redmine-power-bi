@@ -3,15 +3,7 @@ class Report < ActiveRecord::Base
 
     def self.power_bi_config
 
-    {
-        "AUTHORITY_HOST" => 'login.microsoftonline.com',
-        "TENANT" => "", #directory id of workspace in power bi
-        "CLIENT_ID" => '', 
-        "CLIENT_SECRET" => '', #client secret value, not id
-        "RESOURCE" => 'https://analysis.windows.net/powerbi/api',
-        "USERNAME" => '', #power bi username
-        "PASSWORD" => '' # power bi password
-    }
+    YAML.load_file("powerbi.yml")
 
     end
 end

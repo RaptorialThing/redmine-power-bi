@@ -1,0 +1,8 @@
+---
+AUTHORITY_HOST: login.microsoftonline.com
+TENANT: 
+CLIENT_ID: 
+CLIENT_SECRET: ""
+RESOURCE: https://analysis.windows.net/powerbi/api
+USERNAME: ''
+PASSWORD: ''
