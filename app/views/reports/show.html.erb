@@ -1,0 +1,38 @@
+<h2>ReportsController#show</h2>
+<p>Report name: <%= @name %> </p>
+<p>Report id <%= @report_id %></p>
+<ul>
+<% if User.current.admin %>
+<li><%= link_to "Edit", edit_report_path(@report) %></li>
+<li><%= link_to "Destroy", report_path(@report), data: {
+    method: :delete,
+    confirm: "Уверены?"
+}%> </li>
+<% end %>
+<ul>
+<% content_for :header_tags do %>
+        <script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/jquery/dist/jquery.js"></script>
+        <script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.js"></script>
+<script type="text/javascript">
+window.onload = function () {  
+ 
+
+var embedConfiguration = {
+    type: 'report',
+    accessToken: '<%= @refresh_token %>',
+    embedUrl: '<%= @embedURL %>'
+
+}; 
+ 
+$('#reportContainer').width($(window).width()).height($(window).height());
+
+
+var $reportContainer = $('#reportContainer');
+ 
+var report = powerbi.embedNew($reportContainer.get(0), embedConfiguration);
+ 
+}
+</script>
+<% end %>
+
+<div id="reportContainer" ></div>

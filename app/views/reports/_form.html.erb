@@ -1,0 +1,29 @@
+<%= form_with model: report do |form| %>
+<div>
+    <%= form.label :power_bi_id %><br/>
+    <%= form.text_field :power_bi_id %>
+    <% report.errors.full_messages_for(:power_bi_id).each do |message|%>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div>
+    <%= form.label :power_bi_name %><br/>
+    <%= form.text_field :power_bi_name %>
+    <% report.errors.full_messages_for(:power_bi_name).each do |message|%>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div>
+    <%= form.label :embed_url %><br/>
+    <%= form.text_field :embed_url %>
+    <% report.errors.full_messages_for(:embed_url).each do |message|%>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,41 @@
+<h2>ReportsController#index</h2>
+<ul>
+<% @reports.each do |report| %>
+<li>
+<%= link_to report.power_bi_name , report_path(report)%>
+</li>
+<% end %>
+</ul>
+<% if User.current.admin %>
+<p> <%= button_to "Новый отчет", new_report_path, method: :get %> </p>
+<p>
+Добавить новый доступ к отчету
+<%= form_with model: UserReport.new do |f| %>
+   <%= f.label :report_id %>
+   <%= f.select :report_id, Report.all.collect{|c| [c.power_bi_name, c.id] } %> </br>
+ 
+   <%= f.label :user_id %>
+   <%= f.select :user_id, User.all.collect{|c| [c.name, c.id] } %> </br>
+
+   <%= f.submit "Добавить" %>
+<% end %>
+</p>
+<% unless @user_reports.nil? %>
+<p>
+Доступы
+<ul>
+<%= @user_reports.each do |user_report|%>
+<li>
+Report: <%= user_report.report_id %>
+User: <%= user_report.user_id %>
+</li>
+<li><%= link_to "Удалить", user_report_path(user_report), data: {
+    method: :delete,
+    confirm: "Уверены?"
+}%> </li>
+<% end %>
+</ul>
+</p>
+<% end %>
+
+<% end %>
