@@ -5,12 +5,12 @@ class Report < ActiveRecord::Base
 
     {
         "AUTHORITY_HOST" => 'login.microsoftonline.com',
-        "TENANT" => "e754ed58-f367-4b04-b2f4-c4d9ccb3a4de",
-        "CLIENT_ID" => '790f26fd-00b1-4c5c-afda-54b2b6ffd21d',
-        "CLIENT_SECRET" => '.md8Q~m.W0AAFV2.jKlNQXt~BhL5qxTH7hoSTbuI',
+        "TENANT" => "", #directory id of workspace in power bi
+        "CLIENT_ID" => '', 
+        "CLIENT_SECRET" => '', #client secret value, not id
         "RESOURCE" => 'https://analysis.windows.net/powerbi/api',
-        "USERNAME" => 'rubinecc@116.ru',
-        "PASSWORD" => 'Gh123456!'
+        "USERNAME" => '', #power bi username
+        "PASSWORD" => '' # power bi password
     }
 
     end
