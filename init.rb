@@ -6,7 +6,7 @@ Redmine::Plugin.register :power_bi do
   url ''
   author_url 'https://t.me/raptorialthing'
 
-  project_module :power_bi do 
+  project_module :powerbi_report do 
     permission :all_power_bi_reports, :power_bi => :index
     permission :show_power_bi_reports, :power_bi => :show
     permission :new_power_bi_reports, :power_bi => :new
@@ -14,6 +14,6 @@ Redmine::Plugin.register :power_bi do
     permission :delete_power_bi_reports, :power_bi => :destroy
   end
   
-  menu :application_menu, :reports, { :controller => 'reports', :action => 'index' }, caption: 'Report'
-  settings default: {'empty' => true}, partial: 'settings/powerbi_settings'
+  menu :application_menu, :reports, { :controller => 'reports', :action => 'index' }, caption: 'Аналитический отчет'
+  settings default: {'empty' => true}, partial: 'settings/powerbi_settings.erb'
 end

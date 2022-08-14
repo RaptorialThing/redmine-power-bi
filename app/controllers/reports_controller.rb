@@ -71,9 +71,15 @@ class ReportsController < ApplicationController
   
       rp = ws.reports[report.report_order_id]
 
-      @name =  rp.name
-      @embedURL = rp.embed_url
-      @report_id = rp.id
+      if rp.nil? 
+        redirect_to reports_path
+      end 
+
+      unless rp.nil?
+        @name =  rp.name
+        @embedURL = rp.embed_url
+        @report_id = rp.id
+      end
     end
 
     def authorize_powerbi

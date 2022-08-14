@@ -1,4 +1,4 @@
-<h2>ReportsController#index</h2>
+<h2>Аналитические отчеты</h2>
 <ul>
     <% @reports.each do |report| %>
         <% access = UserReport.where("user_id = :user_id and report_id = :report_id",{ user_id: User.current.id, report_id: report.id }) ; unless access.empty? %>

@@ -1,9 +1,8 @@
 ---
-# replace with your data and uncomment
-# AUTHORITY_HOST: login.microsoftonline.com
-# TENANT: f9c82858-9f8d-4e8c-8100-4803808e3f02
-# CLIENT_ID: f3688777-ef03-4ff7-9a79-f337a2e51dcc
-# CLIENT_SECRET: "H9KxSJQe3O-7YdEe--2ER_g1yJjULE37-I"
-# RESOURCE: https://analysis.windows.net/powerbi/api
-# USERNAME: support@setronika.ru
-# PASSWORD: red!mine@20
+AUTHORITY_HOST: login.microsoftonline.com
+TENANT: f9c82858-9f8d-4e8c-8100-4803808e3f02
+CLIENT_ID: f3688777-ef03-4ff7-9a79-f337a2e51dcc
+CLIENT_SECRET: "H9KxSJQe3O-7YdEe--2ER_g1yJjULE37-I"
+RESOURCE: https://analysis.windows.net/powerbi/api
+USERNAME: support@setronika.ru
+PASSWORD: red!mine@20
