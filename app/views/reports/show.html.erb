@@ -1,6 +1,7 @@
 <h2>ReportsController#show</h2>
-<p>Report name: <%= @name %> </p>
-<p>Report id <%= @report_id %></p>
+<div>Report name: <%= @name %> <br/>
+Report id <%= @report_id %>
+</div>
 <ul>
 <% if User.current.admin %>
 <li><%= link_to "Edit", edit_report_path(@report) %></li>
@@ -9,7 +10,7 @@
     confirm: "Уверены?"
 }%> </li>
 <% end %>
-<ul>
+</ul>
 <% content_for :header_tags do %>
         <script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/jquery/dist/jquery.js"></script>
         <script src="https://microsoft.github.io/PowerBI-JavaScript/demo/node_modules/powerbi-client/dist/powerbi.js"></script>
@@ -24,7 +25,7 @@ var embedConfiguration = {
 
 }; 
  
-$('#reportContainer').width($(window).width()).height($(window).height());
+$('#reportContainer').width("100%").height("100%");
 
 
 var $reportContainer = $('#reportContainer');

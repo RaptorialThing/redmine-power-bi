@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
-    get_power_bi_report
+    get_power_bi_report(@report)
   end
 
   def new
@@ -48,10 +48,10 @@ class ReportsController < ApplicationController
 
   private 
     def report_params 
-      params.require(:report).permit(:power_bi_id, :power_bi_name, :embed_url)
+      params.require(:report).permit(:power_bi_id, :power_bi_name, :embed_url, :workspace_order_id, :report_order_id)
     end
 
-    def get_power_bi_report
+    def get_power_bi_report(report)
       client = OAuth2::Client.new(Report.power_bi_config["CLIENT_ID"], Report.power_bi_config["CLIENT_SECRET"], site: 'https://login.microsoftonline.com', token_url: "#{Report.power_bi_config['TENANT']}/oauth2/token")
 
       token = nil
@@ -66,10 +66,10 @@ class ReportsController < ApplicationController
       pbi = PowerBI::Tenant.new(->{token = get_token(client, token) ; token.token})
       workspaces = pbi.workspaces
 
-      ws = workspaces[0]
+      ws = workspaces[report.workspace_order_id]
       @refresh_token = token.token
   
-      rp = ws.reports.first
+      rp = ws.reports[report.report_order_id]
 
       @name =  rp.name
       @embedURL = rp.embed_url

@@ -1,14 +1,23 @@
 <h2>ReportsController#index</h2>
 <ul>
-<% @reports.each do |report| %>
-<li>
-<%= link_to report.power_bi_name , report_path(report)%>
-</li>
-<% end %>
+    <% @reports.each do |report| %>
+        <% access = UserReport.where("user_id = :user_id and report_id = :report_id",{ user_id: User.current.id, report_id: report.id }) ; unless access.empty? %>
+        <li>
+        <%= link_to report.power_bi_name , report_path(report)%>
+        </li>
+            <% if User.current.admin %>
+            <li> <%= button_to "Удалить", report_path(report), method: :delete %> </li>
+            <br/>
+            <% end %>
+        <% end %>
+    <% end %>
 </ul>
 <% if User.current.admin %>
+<br/>
+Добавить отчет
 <p> <%= button_to "Новый отчет", new_report_path, method: :get %> </p>
 <p>
+<br/>
 Добавить новый доступ к отчету
 <%= form_with model: UserReport.new do |f| %>
    <%= f.label :report_id %>
@@ -22,17 +31,19 @@
 </p>
 <% unless @user_reports.nil? %>
 <p>
+<br/>
 Доступы
 <ul>
-<%= @user_reports.each do |user_report|%>
+<% @user_reports.each do |user_report|%>
 <li>
-Report: <%= user_report.report_id %>
-User: <%= user_report.user_id %>
+Report: <%= report = Report.find(user_report.report_id); link_to report.power_bi_name, report_path(report.id) %>
+User: <%= user = User.find(user_report.user_id); link_to user.name, user_path(user.id) %>
 </li>
 <li><%= link_to "Удалить", user_report_path(user_report), data: {
     method: :delete,
     confirm: "Уверены?"
 }%> </li>
+<br/>
 <% end %>
 </ul>
 </p>

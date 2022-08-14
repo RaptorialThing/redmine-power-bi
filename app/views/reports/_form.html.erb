@@ -23,6 +23,22 @@
     <% end %>
 </div>
 
+<div>
+    <%= form.label :workspace_order_id %><br/>
+    <%= form.number_field :workspace_order_id %>
+    <% report.errors.full_messages_for(:workspace_order_id).each do |message|%>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
+<div>
+    <%= form.label :report_order_id %><br/>
+    <%= form.number_field:report_order_id %>
+    <% report.errors.full_messages_for(:report_order_id).each do |message|%>
+    <div><%= message %></div>
+    <% end %>
+</div>
+
   <div>
     <%= form.submit %>
   </div>
